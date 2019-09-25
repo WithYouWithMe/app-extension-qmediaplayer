@@ -7,16 +7,16 @@ import './media-player.styl'
 import Colorize from '@quasar/quasar-app-extension-colorize/src/colorize.js'
 
 import {
-  QSlider,
-  QBtn,
-  QTooltip,
-  QMenu,
-  QExpansionItem,
-  QList,
-  QItem,
-  QItemSection,
-  QIcon,
-  QSpinner,
+  WSlider,
+  WBtn,
+  WTooltip,
+  WMenu,
+  WExpansionItem,
+  WList,
+  WItem,
+  WItemSection,
+  WIcon,
+  WSpinner,
   ClosePopup,
   Ripple
 } from 'quasar'
@@ -766,10 +766,10 @@ export default function (ssrContext) {
       },
 
       __adjustMenu () {
-        const qmenu = this.$refs['menu']
-        if (qmenu) {
+        const WMenu = this.$refs['menu']
+        if (WMenu) {
           setTimeout(() => {
-            qmenu.updatePosition()
+            WMenu.updatePosition()
           }, 350)
         }
       },
@@ -1090,7 +1090,7 @@ export default function (ssrContext) {
       __renderPlayButton (h) {
         let slot = this.$slots.play
 
-        return slot || h(QBtn, {
+        return slot || h(WBtn, {
           staticClass: 'q-media__controls--button',
           props: {
             icon: this.state.playing ? this.iconSet.mediaPlayer.pause : this.iconSet.mediaPlayer.play,
@@ -1103,8 +1103,8 @@ export default function (ssrContext) {
             click: this.togglePlay
           }
         }, [
-          this.showTooltips && this.state.playing && h(QTooltip, this.lang.mediaPlayer.pause),
-          this.showTooltips && !this.state.playing && this.state.playReady && h(QTooltip, this.lang.mediaPlayer.play)
+          this.showTooltips && this.state.playing && h(WTooltip, this.lang.mediaPlayer.pause),
+          this.showTooltips && !this.state.playing && this.state.playReady && h(WTooltip, this.lang.mediaPlayer.play)
         ])
       },
 
@@ -1122,7 +1122,7 @@ export default function (ssrContext) {
           }, [
             h('div', [
               this.__renderPlayButton(h),
-              this.showTooltips && !this.state.playReady && h(QTooltip, this.lang.mediaPlayer.waitingVideo)
+              this.showTooltips && !this.state.playReady && h(WTooltip, this.lang.mediaPlayer.waitingVideo)
             ]),
             this.__renderVolumeButton(h),
             this.__renderVolumeSlider(h),
@@ -1148,7 +1148,7 @@ export default function (ssrContext) {
             }, [
               h('div', [
                 this.__renderPlayButton(h),
-                this.showTooltips && !this.state.playReady && h(QTooltip, this.lang.mediaPlayer.waitingVideo)
+                this.showTooltips && !this.state.playReady && h(WTooltip, this.lang.mediaPlayer.waitingVideo)
               ]),
               this.__renderVolumeButton(h),
               this.__renderVolumeSlider(h)
@@ -1175,7 +1175,7 @@ export default function (ssrContext) {
             // dense
             h('div', [
               this.__renderPlayButton(h),
-              this.showTooltips && !this.state.playReady && h(QTooltip, this.lang.mediaPlayer.waitingAudio)
+              this.showTooltips && !this.state.playReady && h(WTooltip, this.lang.mediaPlayer.waitingAudio)
             ]),
             this.__renderVolumeButton(h),
             this.__renderVolumeSlider(h),
@@ -1196,7 +1196,7 @@ export default function (ssrContext) {
           }, [
             h('div', [
               this.__renderPlayButton(h),
-              this.showTooltips && !this.state.playReady && h(QTooltip, this.lang.mediaPlayer.waitingAudio)
+              this.showTooltips && !this.state.playReady && h(WTooltip, this.lang.mediaPlayer.waitingAudio)
             ]),
             this.__renderVolumeButton(h),
             this.__renderVolumeSlider(h)
@@ -1207,7 +1207,7 @@ export default function (ssrContext) {
       __renderVolumeButton (h) {
         let slot = this.$slots.volume
 
-        return slot || h(QBtn, {
+        return slot || h(WBtn, {
           staticClass: 'q-media__controls--button',
           props: {
             icon: this.volumeIcon,
@@ -1220,8 +1220,8 @@ export default function (ssrContext) {
             click: this.toggleMuted
           }
         }, [
-          this.showTooltips && !this.state.muted && h(QTooltip, this.lang.mediaPlayer.mute),
-          this.showTooltips && this.state.muted && h(QTooltip, this.lang.mediaPlayer.unmute)
+          this.showTooltips && !this.state.muted && h(WTooltip, this.lang.mediaPlayer.mute),
+          this.showTooltips && this.state.muted && h(WTooltip, this.lang.mediaPlayer.unmute)
         ])
       },
 
@@ -1231,7 +1231,7 @@ export default function (ssrContext) {
         }
         let slot = this.$slots.volumeSlider
 
-        return slot || h(QSlider, {
+        return slot || h(WSlider, {
           staticClass: 'col',
           style: {
             width: '20%',
@@ -1256,7 +1256,7 @@ export default function (ssrContext) {
       __renderSettingsButton (h) {
         let slot = this.$slots.settings
 
-        return slot || h(QBtn, {
+        return slot || h(WBtn, {
           staticClass: 'q-media__controls--button',
           props: {
             icon: this.iconSet.mediaPlayer.settings,
@@ -1266,7 +1266,7 @@ export default function (ssrContext) {
             flat: true
           }
         }, [
-          this.showTooltips && !this.settingsMenuVisible && h(QTooltip, this.lang.mediaPlayer.settings),
+          this.showTooltips && !this.settingsMenuVisible && h(WTooltip, this.lang.mediaPlayer.settings),
           this.__renderSettingsMenu(h)
         ])
       },
@@ -1274,7 +1274,7 @@ export default function (ssrContext) {
       __renderFullscreenButton (h) {
         let slot = this.$slots.fullscreen
 
-        return slot || h(QBtn, {
+        return slot || h(WBtn, {
           staticClass: 'q-media__controls--button',
           props: {
             icon: this.state.inFullscreen ? this.iconSet.mediaPlayer.fullscreenExit : this.iconSet.mediaPlayer.fullscreen,
@@ -1287,7 +1287,7 @@ export default function (ssrContext) {
             click: this.toggleFullscreen
           }
         }, [
-          this.showTooltips && h(QTooltip, this.lang.mediaPlayer.toggleFullscreen)
+          this.showTooltips && h(WTooltip, this.lang.mediaPlayer.toggleFullscreen)
         ])
       },
 
@@ -1304,7 +1304,7 @@ export default function (ssrContext) {
         return slot || h('div', {
           staticClass: this.isVideo ? 'q-media__loading--video' : 'q-media__loading--audio'
         }, [
-          h(QSpinner, {
+          h(WSpinner, {
             props: {
               size: this.state.spinnerSize,
               color: this.color
@@ -1319,7 +1319,7 @@ export default function (ssrContext) {
         return slot || h('div', this.setBorderColor(this.bigPlayButtonColor, {
           staticClass: 'q-media--big-button'
         }), [
-          h(QIcon, this.setTextColor(this.bigPlayButtonColor, {
+          h(WIcon, this.setTextColor(this.bigPlayButtonColor, {
             props: {
               name: this.iconSet.mediaPlayer.bigPlayButton
             },
@@ -1340,7 +1340,7 @@ export default function (ssrContext) {
       __renderCurrentTimeSlider (h) {
         let slot = this.$slots.positionSlider
 
-        return slot || h(QSlider, {
+        return slot || h(WSlider, {
           staticClass: 'col',
           style: {
             margin: '0 0.5rem'
@@ -1405,7 +1405,7 @@ export default function (ssrContext) {
       __renderSettingsMenu (h) {
         let slot = this.$slots.settingsMenu
 
-        return h(QMenu, {
+        return h(WMenu, {
           ref: 'menu',
           props: {
             anchor: 'top right',
@@ -1421,7 +1421,7 @@ export default function (ssrContext) {
           }
         }, [
           slot || h('div', [
-            this.state.playbackRates.length && h(QExpansionItem, {
+            this.state.playbackRates.length && h(WExpansionItem, {
               props: {
                 group: 'settings-menu',
                 expandSeparator: true,
@@ -1434,13 +1434,13 @@ export default function (ssrContext) {
                 hide: this.__adjustMenu
               }
             }, [
-              h(QList, {
+              h(WList, {
                 props: {
                   highlight: true
                 }
               }, [
                 this.state.playbackRates.map((rate) => {
-                  return h(QItem, {
+                  return h(WItem, {
                     attrs: {
                       key: rate.value
                     },
@@ -1463,24 +1463,24 @@ export default function (ssrContext) {
                       }
                     ]
                   }, [
-                    h(QItemSection, {
+                    h(WItemSection, {
                       props: {
                         avatar: true
                       }
                     }, [
-                      rate.value === this.state.playbackRate && h(QIcon, {
+                      rate.value === this.state.playbackRate && h(WIcon, {
                         props: {
                           name: this.iconSet.mediaPlayer.selected
                         }
                       })
                     ]),
-                    h(QItemSection, rate.label)
+                    h(WItemSection, rate.label)
                   ])
                 })
               ])
             ]),
             // first item is 'Off' and doesn't count unless more are added
-            this.selectTracksLanguageList.length > 1 && h(QExpansionItem, {
+            this.selectTracksLanguageList.length > 1 && h(WExpansionItem, {
               props: {
                 group: 'settings-menu',
                 expandSeparator: true,
@@ -1493,13 +1493,13 @@ export default function (ssrContext) {
                 hide: this.__adjustMenu
               }
             }, [
-              h(QList, {
+              h(WList, {
                 props: {
                   highlight: true
                 }
               }, [
                 this.selectTracksLanguageList.map((language) => {
-                  return h(QItem, {
+                  return h(WItem, {
                     attrs: {
                       key: language.value
                     },
@@ -1522,18 +1522,18 @@ export default function (ssrContext) {
                       }
                     ]
                   }, [
-                    h(QItemSection, {
+                    h(WItemSection, {
                       props: {
                         avatar: true
                       }
                     }, [
-                      language.value === this.state.trackLanguage && h(QIcon, {
+                      language.value === this.state.trackLanguage && h(WIcon, {
                         props: {
                           name: this.iconSet.mediaPlayer.selected
                         }
                       })
                     ]),
-                    h(QItemSection, language.label)
+                    h(WItemSection, language.label)
                   ])
                 })
               ])
